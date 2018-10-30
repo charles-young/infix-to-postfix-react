@@ -19,7 +19,7 @@ class InfixToPostfix {
     }
 
     static convert(exp) {
-        exp = exp.replace(/ /g,'');
+        exp = exp.replace(/ /g, '');
         let result = "";
         let stack = new Stack();
 
@@ -56,4 +56,5 @@ class InfixToPostfix {
         return result;
     }
 }
+
 export default InfixToPostfix;
