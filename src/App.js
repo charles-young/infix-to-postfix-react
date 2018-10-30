@@ -1,28 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import InfixToPostfix from "./util/InfixToPostfix";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor() {
+        super();
+        this.state = {
+            infix: '',
+            postfix: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({
+            infix: event.target.value,
+            postfix: InfixToPostfix.convert(event.target.value.trim())
+        });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h3>Infix</h3>
+                <input id="infix" type="text" autoComplete="off" placeholder="Infix Expression"
+                       value={this.state.infix}
+                       onChange={this.handleChange}/>
+                <h3>Postfix</h3>
+                <div id="postfix">
+                    {this.state.postfix}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
